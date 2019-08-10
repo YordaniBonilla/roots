@@ -14,7 +14,12 @@ const eventSchema = new mongoose.Schema({
     },
     items: {
         type: [itemSchema]
+    },
+    location: {
+        type: String,
+        minlength: 5,
+        maxlength: 120
     }
 })
 
-module.exports = eventSchema;
+module.exports = mongoose.model('Event', eventSchema)

@@ -4,7 +4,8 @@ const itemSchema = new Schema({
     name: {
         type: String,
         minlength: 5,
-        maxlength: 30
+        maxlength: 30,
+        required: true
     },
     quantity: {
         type: Number,
@@ -13,7 +14,8 @@ const itemSchema = new Schema({
     },
 
     carrier: {
-        type: String
+        type: String,
+        
     }
 })
 
