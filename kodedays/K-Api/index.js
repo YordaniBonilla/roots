@@ -3,57 +3,112 @@ const express = require('express');
 //import mongoose
 const mongoose = require('mongoose');
 
-const event = require('./models/usecases/event')
+//import cors
+const cors = require('cors');
+
+const Event = require('./models/event')
 
 const app = express();
 //automatically parses incoming data and is accessed in body 
 app.use(express.json())
-
+app.use(cors());
 //list all elements
-app.get('/events', async (request, response) => {
-  const allEvents = await event.getAll();
-  response.json({
-      //if successful does true
-      success: true,
-      //request message
-      message: 'All events',
-      //data contains array of events
-      data: {
-          events: allEvents
-      }
-  })
-})
-
-app.post('/event', (request, response) => {
-    // name = '',
-    // date: '',
-    // items: [{}],
-    // location
-  const {
-      name,
-      date,
-      items,
-      location
-  } = request.body;
-
-  response.json({
-      name,
-      date,
-      items,
-      location
-  })
+app.get('/events',async (request, response) => {
+    try {
+        const allEvents = await Event.getAll()
+        response.json({
+            success: true,
+            message: 'All events',
+            data: {
+                events: allEvents
+            }
+        })
+    } catch (error) {
+        response.status(400)
+        response.json({
+            success: false,
+            error: error.message
+        })
+    }
 })
 
 
 
-mongoose.connect('mongodb+srv://Yordani:<password>@clusterk-lv2l4.mongodb.net/test?retryWrites=true&w=majority', {
+app.post('/events',async (request, response) => {
+    try {
+       
+       const allEvents = await event.getAll();
+       response.json({
+           //if successful does true
+           success: true,
+           //request message
+           message: 'All events',
+           //data contains array of events
+           data: {
+               events: allEvents
+           }
+       })
+   } catch (error) {
+       response.status(400);
+       response.json({
+           success: false,
+           error: error.message
+       })
+   } 
+ })
+
+app.get('/eventos/:id', async (request, response) => {
+    try {
+        const { id } = request.params;
+        const foundEvent = event.getById(id);
+
+        response.json({
+            success: true,
+            message: 'Event found',
+            data: {
+                event: foundEvent
+            }
+        })
+    } catch (error) {
+        response.status(400);
+        response.json({
+            success: false,
+            error: error.message
+        })
+    }
+})
+
+app.put('/eventos/:id/items/:index', async (request, response ) => {
+    try {
+        const { id, index} = request.params;
+        const { name } = request.body;
+
+        const updatedEven = await event.assignCarrier(id, index, name);
+
+        response.json({
+          success: true,
+          message: 'All events',
+          data: {
+              events: allEvents
+          }
+        })
+    } catch (error) {
+        response.status(400);
+        response.json({
+            succes: false,
+            error: error.message
+        })
+    }
+})
+
+mongoose.connect('mongodb+srv://Yordani:Jadeninja93@clusterk-lv2l4.mongodb.net/test?retryWrites=true&w=majority', {
     useNewUrlParser: true
 
-}), (error ) => {
+}, (error ) => {
     if (error ) return console.error('ERROR', error)
     console.log('DB CONNECTED!')
     // listen on port 3000
     app.listen(3000, () => {
         console.log('server running in port 3000');
     });
-}
+})

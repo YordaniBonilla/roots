@@ -1,7 +1,7 @@
 //import only Schema from mongose using destructoring
-const { Schema } = require('mongoose');
+const mongoose = require('mongoose');
 
-const itemSchema = require('./item.js')
+const itemSchema = require('./items')
 
 const eventSchema = new mongoose.Schema({
     name: {
@@ -13,7 +13,7 @@ const eventSchema = new mongoose.Schema({
         type: Date,
     },
     items: {
-        type: [itemSchema]
+        type: [itemsSchema]
     },
     location: {
         type: String,

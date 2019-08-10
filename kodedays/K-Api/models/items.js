@@ -1,6 +1,6 @@
+let mongoose = require('mongoose');
 
-
-const itemSchema = new Schema({
+const itemsSchema = new mongoose.Schema({
     name: {
         type: String,
         minlength: 5,

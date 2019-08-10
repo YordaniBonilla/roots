@@ -1,6 +1,6 @@
-const Event = require('../models/event');
+const Event = require('./models/usecases/event');
 
-function create ({ name, location, location, date }) {
+function create ({ name, location, date }) {
   //one method of creating a new document
   //const newEvent = new Event({ name, location, items, date})
   //newEvent.save();
@@ -15,7 +15,7 @@ function create ({ name, location, location, date }) {
 function getAll () {
     //if no paramaters are given returns all
     //pass a paramater to defined the value to get
-  return Event.find({ name: 'kodemia'})
+  return Event.find({}).lean();
   //research .lean() in docs
 }
 
