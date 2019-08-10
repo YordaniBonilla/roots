@@ -2,12 +2,29 @@
 const express = require('express');
 
 const app = express();
-//endpoint root
-app.get('/', (request, response) => {
-    response.json({
-        message: 'Hola mundo desde express'
-    })
-});
+//automatically parses incoming data and is accessed in body 
+app.use(express.json())
+
+app.post('/event', (request, response) => {
+    // name = '',
+    // date: '',
+    // items: [{}],
+    // location
+  const {
+      name,
+      date,
+      items,
+      location
+  } = request.body;
+
+  response.json({
+      name,
+      date,
+      items,
+      location
+  })
+})
+
 // listen on port 3000
 app.listen(3000, ()=> {
   console.log('server running in port 3000');
