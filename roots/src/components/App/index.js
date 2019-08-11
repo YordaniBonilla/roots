@@ -1,9 +1,13 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './components/App';
+import logo from '../../assets/logo.svg';
+import styles from './index.module.css';
 
+function App() {
+    return (
+        <div className={styles.App}>
+            hello world!
+        </div>    
+    );
+}
 
-ReactDOM.render(<App />, document.getElementById('root'));
-
-
+export default App;
