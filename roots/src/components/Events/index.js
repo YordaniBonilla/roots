@@ -10,22 +10,36 @@ class Events extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            events: []
+            events: [{
+                name: 'peda kodemia',
+                location: 'en mi casa',
+                date: '2019-07-18',
+            }]
         }
     }
     render() {
-      return (
-        <div  classNames={styles.Events}>
+      return this.state.events.map((event) => (
+        <div  classNames={styles.Event}>
           <Card style={{ width: '18rem' }}>
-            <Card.Header>Featured</Card.Header>
+            <Card.Header>
+                {/*use {} for interpolation */}
+                <div>{ event.name }</div> 
+                <div>{ event.location }</div>
+                <div>{ event.date }</div>
+            </Card.Header>
             <ListGroup variant="flush">
-              <ListGroup.Item>Cras justo odio</ListGroup.Item>
-              <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-              <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
+              {
+                  event.items.map((item)=> (
+                      <ListGroup.Item>
+                          <div>{ item.quantity} * { item.name }</div>
+                          <div>quien lo va a llevar: { item.carrier }</div>
+                      </ListGroup.Item>    
+                  ))
+              }
             </ListGroup> 
           </Card>
-        </div>    
-      );
+        </div> 
+      ))
   }
 }
 //make class available to other modules by exporting 
