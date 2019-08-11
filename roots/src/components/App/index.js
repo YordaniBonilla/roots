@@ -2,6 +2,7 @@ import React from 'react';
 import logo from '../../assets/logo.svg';
 import styles from './index.module.css';
 import Navbar from 'react-bootstrap/Navbar'
+import Events from '../Events'
 
 function App() {
     return (
@@ -19,7 +20,7 @@ function App() {
                 </Navbar.Brand>
             </Navbar>
             <div className={styles.Main}>
-            yaaaaaa
+              <Events/>
             </div>
         </div>    
     );
