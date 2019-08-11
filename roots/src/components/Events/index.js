@@ -7,7 +7,13 @@ import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 
 class Events extends Component {
-  render() {
+    constructor(props) {
+        super(props);
+        this.state = {
+            events: []
+        }
+    }
+    render() {
       return (
         <div  classNames={styles.Events}>
           <Card style={{ width: '18rem' }}>
