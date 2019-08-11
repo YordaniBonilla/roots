@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 //renders index.html id 
 ReactDOM.render(
   <App />,
-  document.getElementById('root'));
+  document.getElementById('root')
+  );
 
 
