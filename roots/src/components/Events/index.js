@@ -9,13 +9,9 @@ import ListGroup from 'react-bootstrap/ListGroup';
 class Events extends Component {
     constructor(props) {
         super(props);
+
         this.state = {
-            events: [{
-                name: 'peda kodemia',
-                location: 'en mi casa',
-                date: '2019-07-18',
-                items: [{},{},{}]
-            }]
+            events: []
         }
     }
 
@@ -26,7 +22,7 @@ class Events extends Component {
 
         const { events } = data;
 
-        this.setState({ events});
+        this.setState({ events });
     }
 
     render() {
@@ -35,16 +31,16 @@ class Events extends Component {
           <Card style={{ width: '18rem' }}>
             <Card.Header>
                 {/*use {} for interpolation */}
-                <div>{ event.name }</div> 
-                <div>{ event.location }</div>
-                <div>{ event.date }</div>
+                <div>title: { event.name }</div> 
+                <div>location: { event.location }</div>
+                <div>When: { event.date }</div>
             </Card.Header>
             <ListGroup variant="flush">
               {
                 event.items.map((item)=> (
                     <ListGroup.Item>
-                        <div>{ item.quantity} * { item.name }</div>
-                        <div>quien lo va a llevar: { item.carrier }</div>
+                        <div>Product: { item.quantity},{ item.name }</div>
+                        <div>Carrier: { item.carrier }</div>
                     </ListGroup.Item>    
                   ))
               }
