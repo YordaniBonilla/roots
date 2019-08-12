@@ -20,7 +20,7 @@ class Events extends Component {
     }
 
     async componentDidMount() {
-        const response = await fetch('http://localhost:3000/events');
+        const response = await fetch('http://localhost:8080/events');
 
         const { data = {}} = await response.json()
 
