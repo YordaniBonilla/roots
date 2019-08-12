@@ -1,6 +1,6 @@
 const Event = require('../models/event');
 
-function create({ name, location, items, date }) {
+function create({ name, date, items, location }) {
   //one method of creating a new document
   //const newEvent = new Event({ name, location, items, date})
   //newEvent.save();
@@ -9,7 +9,7 @@ function create({ name, location, items, date }) {
   //const newEvent = Event.create({ name, location, items, date})
 
   //shortcut
-    return Event.create({ name, location, items, date });
+    return Event.create({ name, date, items, location });
 }
 //get values
 function getAll () {

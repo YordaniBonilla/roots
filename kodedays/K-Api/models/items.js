@@ -1,6 +1,6 @@
-let mongoose = require('mongoose');
+let { Schema } = require('mongoose');
 
-const itemsSchema = new mongoose.Schema({
+const itemsSchema = new Schema({
     name: {
         type: String,
         minlength: 5,
@@ -10,9 +10,9 @@ const itemsSchema = new mongoose.Schema({
     quantity: {
         type: Number,
         minlength: 1,
-        default: 1
+        default: 1,
+        require: true
     },
-
      carrier: {
         type: String,
         minlength: 3,

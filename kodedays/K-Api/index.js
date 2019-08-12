@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 //import cors
 const cors = require('cors');
 
-const Event = require('./usecases/event')
+const event = require('./usecases/event')
 
 const app = express();
 //automatically parses incoming data and is accessed in body 
@@ -15,7 +15,7 @@ app.use(cors());
 //list all elements
 app.get('/events',async (request, response) => {
     try {
-        const allEvents = await Event.getAll()
+        const allEvents = await event.getAll()
         console.log(allEvents);
         response.json({
             success: true,
@@ -43,8 +43,8 @@ app.post('/events',async (request, response) => {
             items,
             location
         } = request.body;
-
-        const createEvent = await event.create({ name, location, items, date })
+        console.log(request.body)
+        const createEvent = await event.create({ name, date, items, location})
 
         response.json({
             success: true,
@@ -72,7 +72,7 @@ app.post('/events',async (request, response) => {
 app.get('/events/:id', async (request, response) => {
     try {
         const { id } = request.params;
-        const foundEvent = event.getById(id);
+        const foundEvent = await event.getById(id);
 
         response.json({
             success: true,
@@ -95,13 +95,13 @@ app.put('/events/:id/items/:index', async (request, response ) => {
         const { id, index} = request.params;
         const { name } = request.body;
 
-        const updatedEven = await event.assignCarrier(id, index, name);
+        const updatedEvent = await event.assignCarrier(id, index, name);
 
         response.json({
           success: true,
-          message: 'All events',
+          message: 'Carried assigned',
           data: {
-              events: allEvents
+              events: updatedEvent
           }
         })
     } catch (error) {

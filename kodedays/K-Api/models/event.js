@@ -7,10 +7,12 @@ const eventSchema = new mongoose.Schema({
     name: {
         type: String,
         minlength: 5,
-        maxlength: 100
+        maxlength: 100,
+        require: true
     },
     date: {
         type: Date,
+        require: true
     },
     items: {
         type: [itemsSchema]
@@ -18,7 +20,8 @@ const eventSchema = new mongoose.Schema({
     location: {
         type: String,
         minlength: 5,
-        maxlength: 120
+        maxlength: 120,
+        require: true
     }
 })
 
