@@ -1,4 +1,4 @@
-const Event = require('./models/usecases/event');
+const Event = require('../models/event');
 
 function create ({ name, location, date }) {
   //one method of creating a new document
