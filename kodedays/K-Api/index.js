@@ -37,25 +37,36 @@ app.get('/events',async (request, response) => {
 
 app.post('/events',async (request, response) => {
     try {
-       
-       const allEvents = await event.getAll();
-       response.json({
-           //if successful does true
-           success: true,
-           //request message
-           message: 'All events',
-           //data contains array of events
-           data: {
-               events: allEvents
-           }
-       })
-   } catch (error) {
-       response.status(400);
-       response.json({
-           success: false,
-           error: error.message
-       })
-   } 
+        const {
+            name,
+            date,
+            items,
+            location
+        } = request.body;
+
+        const createEvent = await event.create({ name, location, items, date })
+
+        response.json({
+            success: true,
+            message: 'Event created!',
+            data: {
+                event: createEvent
+            }
+        })
+
+        response.json({
+            name,
+            date,
+            items,
+            location
+        })
+    } catch (error) {
+        response.status(400)
+        response.json({
+            success: false,
+            error: error.message
+        })
+    }  
  })
 
 app.get('/events/:id', async (request, response) => {

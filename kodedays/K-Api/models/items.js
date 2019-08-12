@@ -13,9 +13,11 @@ const itemsSchema = new mongoose.Schema({
         default: 1
     },
 
-    carrier: {
+     carrier: {
         type: String,
-        
+        minlength: 3,
+        maxlength: 30,
+        require: true
     }
 })
 

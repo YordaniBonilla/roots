@@ -1,6 +1,6 @@
 const Event = require('../models/event');
 
-function create ({ name, location, date }) {
+function create({ name, location, items, date }) {
   //one method of creating a new document
   //const newEvent = new Event({ name, location, items, date})
   //newEvent.save();
